@@ -29,4 +29,10 @@
 ./fifo_tb.sv
 </pre>
 
-
+## 需要再testbench中加入生成fsdb文件代码为：  
+<pre>initial begin
+    $fsdbDumpfile("tb.fsdb");
+    $fsdbDumpvars(0,fifo_tb);
+    #1000 $finish;
+end
+</pre>

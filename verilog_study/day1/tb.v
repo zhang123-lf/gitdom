@@ -21,6 +21,10 @@ initial begin
     #30 b='d34;
     #123 a='d27;
     #123 b='d65;
-
+end
+initial begin
+    $fsdbDumpfile("tb.fsdb");
+    $fsdbDumpvars(0,tb);
+    #1000 $finish;
 end
 endmodule
