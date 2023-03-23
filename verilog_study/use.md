@@ -23,7 +23,10 @@
 <pre>clean  :
 	 rm  -rf  *~  core  csrc  simv*  vc_hdrs.h  ucli.key  urg* *.log  novas.* *.fsdb* verdiLog  64* DVEfiles *.vpd
 </pre>  
-这上面只有vcs、verdi和clean的，其余的我不会
-
+这上面只有vcs、verdi和clean的，其余的我不会  
+## 还要再建个**filelist.f**
+<pre>./fifo.v
+./fifo_tb.sv
+</pre>
 
 
