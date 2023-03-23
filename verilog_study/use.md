@@ -11,7 +11,8 @@
 ## 删除work库输入`rm -r work`
 # vcs和verdi使用
 ## 创建一个makefile脚本，内容为：  
-<pre>vcs  \
+<pre>vcs  :
+	vcs  \
 		-f filelist.f  \
 		-timescale=1ns/1ps \
 		-full64  -R  +vc  +v2k  -sverilog -debug_access+all\
@@ -23,7 +24,7 @@
 <pre>clean  :
 	 rm  -rf  *~  core  csrc  simv*  vc_hdrs.h  ucli.key  urg* *.log  novas.* *.fsdb* verdiLog  64* DVEfiles *.vpd
 </pre>  
-这上面只有vcs、verdi和clean的，其余的我不会  
+这上面只有vcs、verdi和clean的，其余的我不会 
 ## 还要再建个**filelist.f**
 <pre>./fifo.v
 ./fifo_tb.sv
