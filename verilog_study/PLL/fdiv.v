@@ -1,4 +1,4 @@
-//输入时钟100M，设计分频器产生毫秒和秒时钟脉冲     
+//设计分频器产生毫秒和秒时钟脉冲     
 module fdiv (
     input           inclk,
     input           rst,
