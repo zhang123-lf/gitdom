@@ -14,7 +14,7 @@ always@(posedge inclk or posedge rst ) begin
         ms_clk <= 0;
     end
     else    begin
-        if (ms_r==49) begin
+        if (ms_r==4) begin
             ms_clk <= ~ms_clk;
             ms_r <= 0;
         end
@@ -29,7 +29,7 @@ always@(posedge ms_clk or posedge rst) begin
         s_clk <= 0;
     end
     else    begin
-        if (s_r==49) begin
+        if (s_r==4) begin
             s_clk <= ~s_clk;
             s_r <= 0;
         end

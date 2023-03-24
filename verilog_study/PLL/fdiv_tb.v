@@ -3,8 +3,8 @@ module fdiv_tb ();
 reg inclk,rst;
 wire ms_clk,s_clk;
 initial begin
-    rst=1;
-    inclk=0;
+    #1 rst=1;
+    #1 inclk=0;
     forever begin
         # 2 inclk = ~inclk;
     end
