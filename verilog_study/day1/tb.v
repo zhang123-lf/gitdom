@@ -22,9 +22,9 @@ initial begin
     #123 a='d27;
     #123 b='d65;
 end
-initial begin
-    $fsdbDumpfile("tb.fsdb");
-    $fsdbDumpvars(0,tb);
-    #1000 $finish;
-end
+//initial begin  //这个是vcs用的代码
+//    $fsdbDumpfile("tb.fsdb");
+//    $fsdbDumpvars(0,tb);
+//    #1000 $finish;
+//end
 endmodule
