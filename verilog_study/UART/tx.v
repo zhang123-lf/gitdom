@@ -84,6 +84,7 @@ always @(posedge clk  or posedge rst) begin
                     tx_st <= STOP1_BIT;
             end
             PAR_BIT:begin
+                tx_st <= STOP1_BIT;
                 if(PARITY =="ODD")
                     tx <= ~odd;
                 else 
@@ -114,6 +115,8 @@ always @(posedge clk  or posedge rst) begin
                         tx_st <= IDLE;
                     end
             end
+            default:
+                tx_st <= IDLE;
         endcase
     end
 end

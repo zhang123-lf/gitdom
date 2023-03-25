@@ -1,7 +1,7 @@
-`timescale 10ps/1ps
-module tx_tb (
+`timescale 1ns/1ps
+module tx_tb ( 
 );
-    parameter PERIOD = 104167;
+    parameter PERIOD = 104167;//9600hz
     reg clk;
     reg rst;
     reg [7:0] tx_data;
@@ -22,7 +22,7 @@ module tx_tb (
     always @(posedge clk or posedge rst) begin
         if(rst) begin
             tx_rdy <= 0;
-            tx_data <=0;
+            tx_data <=1;
         end else begin
             if (tx_ack) begin
                 tx_rdy <= 0;
@@ -48,6 +48,6 @@ module tx_tb (
     initial begin
     $fsdbDumpfile("tb.fsdb");
     $fsdbDumpvars(0,tx_tb);
-    #5000 $finish;
+    #(100*PERIOD) $finish;
 end
 endmodule
