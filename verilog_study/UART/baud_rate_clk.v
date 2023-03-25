@@ -1,4 +1,4 @@
-module baud_rate_clk #(              //发送和接受波特率的时钟和使能信号
+module baud_rate_clk #(              //发送和接受波特率的时钟
     parameter BAUD_RATE=115200,     //波特率,每秒接受bit值
     parameter FREQUENCY=100000000      //时钟频率
 ) (
@@ -8,7 +8,7 @@ module baud_rate_clk #(              //发送和接受波特率的时钟和使�
     output  reg rx_clk
 );
     localparam TX_DIV_COE = FREQUENCY / (BAUD_RATE*2) - 1;   //2倍频过采样,这个是分频的需要计数到的值
-    localparam RX_DIV_COE = FREQUENCY / (BAUD_RATE*8) - 1;   //八倍频过采样
+    localparam RX_DIV_COE = FREQUENCY / (BAUD_RATE*8*2) - 1;   //八倍频过采样
 
     reg [18:0]  tx_clk_div ;        //定义分频所需要的寄存器
     reg [18:0]  rx_clk_div ;
