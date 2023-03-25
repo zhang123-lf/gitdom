@@ -1,4 +1,4 @@
-module baud_rate_en #(
+module baud_rate_en #(                          //波特率发生器程序
     parameter BAUD_RATE = 115200,
     parameter FREQUENCY = 100000000
 ) (

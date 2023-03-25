@@ -3,7 +3,7 @@ module tx #(
     parameter PARITY = "ODD", //ODD奇校验，EVEN偶校验
     parameter STOP_BIT = 1
 ) (
-    input rst ,clk , tx_rdy,    //tx_data和tx_rdy是一起从上层传下来的
+    input rst ,clk , tx_rdy,tx_bd_en,    //tx_data和tx_rdy是一起从上层传下来的
     input [7:0] tx_data,        //并行数据tx_data串行tx出去
     output reg tx_ack, tx       //收到数据，需要回复
 );
@@ -33,6 +33,7 @@ always @(posedge clk  or posedge rst) begin
         tx_data_r <= 0;     //发送数据的寄存器也是空的
         tx_ack <= 1'b0;     //收到数据data，需要回复信号
     end else begin
+        if(tx_bd_en)                                                        //tx_bd_en为后来加的，统一波特率
         case(tx_st)
             IDLE:begin          //空闲状态，未发出信号，tx_ack为0，tx发送端为1
                 tx_ack <=1'b0;  
