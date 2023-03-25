@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-module tx_tb ( 
+module tx_tb (                  //已通过vcs和verdi
 );
     parameter PERIOD = 104167;//9600hz
     reg clk;
@@ -48,6 +48,6 @@ module tx_tb (
     initial begin
     $fsdbDumpfile("tb.fsdb");
     $fsdbDumpvars(0,tx_tb);
-    #(100*PERIOD) $finish;
+    #(5000*PERIOD) $finish;
 end
 endmodule
