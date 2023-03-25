@@ -1,4 +1,4 @@
-`timescale 100ps/1ps
+`timescale 100ps/1ps        //已经通过vcs和verdi
 module baud_rate_tb();
 parameter PERIOD = 1;
 reg clk;
@@ -33,6 +33,6 @@ baud_rate_clk_inst  (
 initial begin
     $fsdbDumpfile("tb.fsdb");
     $fsdbDumpvars(0,baud_rate_tb);
-    #1000000000 $finish;
+    #5000 $finish;
 end
 endmodule
