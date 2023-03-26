@@ -12,7 +12,7 @@ module uart #(
 
     input       rx_ack,
     output      rx_rdy,
-    output      rx_data,
+    output [7:0]     rx_data,
     input       rst
 );
 wire tx_bd_en,rx_bd_en;
@@ -29,8 +29,8 @@ wire tx_bd_en,rx_bd_en;
     ) 
     tx_inst(
         .rst(rst),
-        .clk(clk),
-        .tx_bd_en(tx_bd_en),
+        .clk(inclk),
+        .tx_bd_en(rx_bd_en),
         .tx_data(tx_data),
         .tx_rdy(tx_req),
         .tx_ack(tx_ack),
