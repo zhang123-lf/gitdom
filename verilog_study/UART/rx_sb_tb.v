@@ -1,4 +1,4 @@
-`timescale 1ps/1ps
+`timescale 1ps/1ps         //通过modelsim
 module rx_sb_tb (
 );
     parameter PERIOD = 10;
