@@ -2,14 +2,14 @@
 module rx_tb (
 );
     parameter PERIOD = 10;
-    reg clk,tx,bd8_rate,rst;
+    reg clk,tx,rst;
     wire [7:0] rx_data;
     wire rx_rdy;
 
     reg [6:0]sample_count;
     reg [1:0] sample_st;
-    reg  [7:0] tx_data=8'h66;
-    wire bd_rate;
+    reg  [7:0] tx_data;
+    wire bd_rate,bd8_rate;
     initial begin
         clk = 0;
         #(PERIOD/2);
@@ -21,6 +21,7 @@ module rx_tb (
     initial begin
         rst = 1;
         #PERIOD rst = 0;
+        tx_data=8'b1010_1101;
     end
 
     always @(posedge clk or posedge rst) begin
@@ -46,13 +47,46 @@ module rx_tb (
                     end
 
                     2:begin
-                    while (tx_data) begin
                         tx <= tx_data[0];
-                        tx_data <= tx_data >> 1;
+                        sample_st <= 3;
                     end
-                    sample_st <= 3;
-                    end
+
                     3:begin
+                        tx <= tx_data[1];
+                        sample_st <= 4;
+                    end
+
+                    4:begin
+                        tx <= tx_data[2];
+                        sample_st <= 5;
+                    end
+
+                    5:begin
+                        tx <= tx_data[3];
+                        sample_st <= 6;
+                    end
+
+                    7:begin
+                        tx <= tx_data[4];
+                        sample_st <= 8;
+                    end
+
+                    8:begin
+                        tx <= tx_data[5];
+                        sample_st <= 9;
+                    end
+
+                    9:begin
+                        tx <= tx_data[6];
+                        sample_st <= 10;
+                    end
+
+                    10:begin
+                        tx <= tx_data[7];
+                        sample_st <= 11;
+                    end
+
+                    11:begin
                         tx <= 1;
                         sample_st <=1;
                     end
