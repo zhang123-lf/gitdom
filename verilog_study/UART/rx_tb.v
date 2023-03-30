@@ -80,9 +80,5 @@ module rv_tb (
         .rx(tx)
     );
 
-initial begin
-    $fsdbDumpfile("tb.fsdb");
-    $fsdbDumpvars(0,rx_tb);
-    #1000 $finish;
-end
+
 endmodule

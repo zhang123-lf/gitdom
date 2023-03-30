@@ -148,7 +148,10 @@ always @(posedge clk or posedge rst ) begin
                     if (sample_count == 7) begin
                         rx_data_tmp[7] <= rx_r[1];
                         sample_count <= 0;
+                        if(PARITY == "ODD")
                         sample_st <= PAR_BIT;
+                        else 
+                        sample_st <= STOP1_BIT;
                     end
                 end
 
