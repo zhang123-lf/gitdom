@@ -38,8 +38,10 @@ always @(posedge clk or posedge rst) begin   //获取起始位边沿
         rx_r <= 0;
         rx_dedge <= 0;
     end else begin
+        if (bd8_rate) begin
         rx_r <= {rx_r[0],rx};
-        rx_dedge <= ^rx_r;
+        rx_dedge <= ^rx_r;            
+        end
     end
 end
 

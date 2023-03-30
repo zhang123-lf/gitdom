@@ -7,7 +7,7 @@ module rx_tb (
     wire rx_rdy;
 
     reg [6:0]sample_count;
-    reg [1:0] sample_st;
+    reg [3:0] sample_st;
     reg  [7:0] tx_data;
     wire bd_rate,bd8_rate;
     initial begin
@@ -21,7 +21,7 @@ module rx_tb (
     initial begin
         rst = 1;
         #PERIOD rst = 0;
-        tx_data=8'b1010_1101;
+        tx_data=8'b10101101;
     end
 
     always @(posedge clk or posedge rst) begin
@@ -66,27 +66,27 @@ module rx_tb (
                         sample_st <= 6;
                     end
 
-                    7:begin
+                    6:begin
                         tx <= tx_data[4];
+                        sample_st <= 7;
+                    end
+
+                    7:begin
+                        tx <= tx_data[5];
                         sample_st <= 8;
                     end
 
                     8:begin
-                        tx <= tx_data[5];
+                        tx <= tx_data[6];
                         sample_st <= 9;
                     end
 
                     9:begin
-                        tx <= tx_data[6];
+                        tx <= tx_data[7];
                         sample_st <= 10;
                     end
 
-                    10:begin
-                        tx <= tx_data[7];
-                        sample_st <= 11;
-                    end
-
-                    11:begin
+                    10:begin  
                         tx <= 1;
                         sample_st <=1;
                     end
