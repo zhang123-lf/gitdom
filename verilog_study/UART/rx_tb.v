@@ -1,5 +1,5 @@
 `timescale 1ps/1ps
-module rv_tb (
+module rx_tb (
 );
     parameter PERIOD = 10;
     reg clk,tx,bd8_rate,rst;
