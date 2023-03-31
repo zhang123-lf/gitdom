@@ -1,4 +1,4 @@
-`timescale 1ps/1ps
+`timescale 1ps/1ps      //modelsim仿真通过
 module rx_tb (
 );
     parameter PERIOD = 10;
@@ -40,7 +40,7 @@ module rx_tb (
                             sample_st <= 1;
                         end
                     end 
-                    
+
                     1:begin
                         tx <= 0;
                         sample_st <=2;
@@ -88,6 +88,7 @@ module rx_tb (
 
                     10:begin  
                         tx <= 1;
+                        tx_data <= tx_data+1;
                         sample_st <=1;
                     end
                 endcase

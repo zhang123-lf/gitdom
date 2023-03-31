@@ -48,7 +48,7 @@ end
 always @(posedge clk or posedge rst ) begin
     if (rst) begin
         rx_data_tmp <= 0;
-        rx_rdy_tmp <= 0;
+        rx_rdy_tmp[0] <= 1'b0;
         sample_st <= 0;
         sample_count <= 0;
     end else begin
@@ -68,7 +68,7 @@ always @(posedge clk or posedge rst ) begin
                 
                 IDLE1:begin                 //等待idle->start_bit的边沿
                     sample_count <= 0;
-                    rx_rdy_tmp[0] <= 0;
+                    rx_rdy_tmp[0] <= 1'b0;
                     if (rx_dedge) begin
                         sample_st <= START;
                     end
@@ -148,7 +148,7 @@ always @(posedge clk or posedge rst ) begin
                 EIGHT_BIT:begin                            
                     sample_count <= sample_count + 1;
                     if (sample_count == 7) begin
-                        rx_data_tmp[7] <= rx_r[1];
+                        rx_data_tmp[7] <= rx_r[0];
                         sample_count <= 0;
                         if(PARITY == "ODD")
                         sample_st <= PAR_BIT;
@@ -183,7 +183,6 @@ always @(posedge clk or posedge rst ) begin
 
                 STOP2_BIT:begin
                     sample_count <= sample_count + 1;
-                    rx_rdy_tmp[0] <= 1'b1;
                     if(sample_count ==7)begin
                         sample_count <= 0;
                         sample_st <=IDLE1;
@@ -195,12 +194,13 @@ always @(posedge clk or posedge rst ) begin
 
 end
 
-always @(posedge clk or rst) begin                  //同步系统时钟clk
+always @(posedge clk or posedge rst) begin                  //同步系统时钟clk
 if (rst) begin
     rx_data <= 0;
     rx_rdy <=0;
 end else begin
     rx_rdy_tmp[1] <=rx_rdy_tmp[0];
+    rx_rdy <= 0;
     if(^rx_rdy_tmp)begin
         rx_data <= rx_data_tmp;
         rx_rdy <= rx_rdy_tmp[1];
