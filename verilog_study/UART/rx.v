@@ -85,7 +85,7 @@ always @(posedge clk or posedge rst ) begin
                 FIRST_BIT:begin  //过8个sample_count取第一位
                     sample_count <= sample_count + 1;
                     if (sample_count == 7) begin
-                        rx_data_tmp[0] <= rx_r[1];
+                        rx_data_tmp[0] <= rx_r[0];
                         sample_count <= 0;
                         sample_st <= SEC_BIT;
                     end
@@ -94,7 +94,7 @@ always @(posedge clk or posedge rst ) begin
                 SEC_BIT:begin                            //再过8个sample_count取第二位，之后也是如此
                     sample_count <= sample_count + 1;
                     if (sample_count == 7) begin
-                        rx_data_tmp[1] <= rx_r[1];
+                        rx_data_tmp[1] <= rx_r[0];
                         sample_count <= 0;
                         sample_st <= THIRD_BIT;
                     end
@@ -103,7 +103,7 @@ always @(posedge clk or posedge rst ) begin
                 THIRD_BIT:begin                            
                     sample_count <= sample_count + 1;
                     if (sample_count == 7) begin
-                        rx_data_tmp[2] <= rx_r[1];
+                        rx_data_tmp[2] <= rx_r[0];
                         sample_count <= 0;
                         sample_st <= FOUTH_BIT;
                     end
@@ -112,7 +112,7 @@ always @(posedge clk or posedge rst ) begin
                 FOUTH_BIT:begin                            
                     sample_count <= sample_count + 1;
                     if (sample_count == 7) begin
-                        rx_data_tmp[3] <= rx_r[1];
+                        rx_data_tmp[3] <= rx_r[0];
                         sample_count <= 0;
                         sample_st <= FIF_BIT;
                     end
@@ -121,7 +121,7 @@ always @(posedge clk or posedge rst ) begin
                 FIF_BIT:begin                            
                     sample_count <= sample_count + 1;
                     if (sample_count == 7) begin
-                        rx_data_tmp[4] <= rx_r[1];
+                        rx_data_tmp[4] <= rx_r[0];
                         sample_count <= 0;
                         sample_st <= SIX_BIT;
                     end
@@ -130,7 +130,7 @@ always @(posedge clk or posedge rst ) begin
                 SIX_BIT:begin                            
                     sample_count <= sample_count + 1;
                     if (sample_count == 7) begin
-                        rx_data_tmp[5] <= rx_r[1];
+                        rx_data_tmp[5] <= rx_r[0];
                         sample_count <= 0;
                         sample_st <= SEVN_BIT;
                     end
@@ -139,7 +139,7 @@ always @(posedge clk or posedge rst ) begin
                 SEVN_BIT:begin                            
                     sample_count <= sample_count + 1;
                     if (sample_count == 7) begin
-                        rx_data_tmp[6] <= rx_r[1];
+                        rx_data_tmp[6] <= rx_r[0];
                         sample_count <= 0;
                         sample_st <= EIGHT_BIT;
                     end
@@ -160,8 +160,8 @@ always @(posedge clk or posedge rst ) begin
                 PAR_BIT:begin
                     sample_count <= sample_count + 1;
                     if (sample_count == 7) begin
-                        if (^rx_data_tmp != rx_r[1]) begin
-                            $display("error");
+                        if (^rx_data_tmp != ~rx_r[0]) begin
+                            $display("%t ,error",$realtime);
                         end
                         sample_count <= 0;
                         sample_st <= STOP1_BIT;

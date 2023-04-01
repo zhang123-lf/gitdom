@@ -45,9 +45,5 @@ module tx_tb (                  //已通过vcs和verdi
         .tx_ack(tx_ack),
         .tx(tx)
     );
-    initial begin
-    $fsdbDumpfile("tb.fsdb");
-    $fsdbDumpvars(0,tx_tb);
-    #(5000*PERIOD) $finish;
-end
+
 endmodule

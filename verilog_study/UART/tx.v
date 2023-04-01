@@ -45,7 +45,7 @@ always @(posedge clk  or posedge rst) begin
                 end
             end
             START:begin
-                tx <= 1'b1;
+                tx <= 1'b0;
                 tx_ack <= 1'b0;
                 tx_st <= FIRST_BIT;
             end
