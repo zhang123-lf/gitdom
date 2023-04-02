@@ -1,6 +1,6 @@
 module baud_rate_en #(                          //波特率发生器程序
-    parameter BAUD_RATE = 115200,
-    parameter FREQUENCY = 10000000             //原本100000000
+    parameter BAUD_RATE = 1,//115200,
+    parameter FREQUENCY = 800             //原本100,000,000
 ) (
     input clk,rst,
     output reg tx_bd_en,rx_bd_en

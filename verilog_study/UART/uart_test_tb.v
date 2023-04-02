@@ -51,7 +51,7 @@ always @(posedge inclk or posedge rst) begin
 end
 initial begin
     tx_data =8'hff;
-    #(PERIOD*1000)
+    #(PERIOD*4000)
     tx_req =1;
     tx_data =8'h12;
 end

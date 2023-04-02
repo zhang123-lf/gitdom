@@ -59,7 +59,7 @@ always @(posedge clk or posedge rst ) begin
                     if (sample_count == 80) begin
                         sample_st <= IDLE1;
                     end else begin
-                        if (rx_r[1]) begin
+                        if (rx_r[0]) begin
                             sample_count <= sample_count + 1;
                         end
                         else sample_count <= 0;

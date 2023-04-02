@@ -1,4 +1,4 @@
-module uart #(
+module uart #(                  //成功收发数据
     parameter PARITY = "ODD" //奇校验让他偶
 ) (
     input       inclk,

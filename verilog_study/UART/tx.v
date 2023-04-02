@@ -1,5 +1,4 @@
-//八位数据的串行发送器，要求参数化奇偶校验部分和停止位数量，假设时钟频率9600hz
-module tx #(
+module tx #(                //八位数据的串行发送器，要求参数化奇偶校验部分和停止位数量，假设时钟频率9600hz
     parameter PARITY = "ODD", //ODD奇校验，EVEN偶校验
     parameter STOP_BIT = 1
 ) (
