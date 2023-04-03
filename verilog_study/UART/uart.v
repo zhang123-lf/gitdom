@@ -47,6 +47,7 @@ wire tx_bd_en,rx_bd_en,data;
         .bd8_rate(rx_bd_en),
         .rx_data(rx_data),
         .rx_rdy(rx_rdy),
-        .rx(data)
+        .rx(data),
+        .rx_ack(rx_ack)
     );
 endmodule

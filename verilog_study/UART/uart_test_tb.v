@@ -30,7 +30,22 @@ module uart_test_tb (
         #(PERIOD*8)
         rst=0;
     end
-always @(posedge inclk or posedge rst) begin
+always @(posedge inclk or posedge rst)begin
+    if(rst)begin
+        tx_data <= 0;
+        rx_ack <= 0;
+        tx_req <= 0;
+    end else begin
+        if (tx_ack) begin
+            tx_req <=0;
+            rx_ack <=1;
+        end else  begin
+            tx_req <= 1;
+            if(rx_rdy)tx_data <= tx_data + 3;
+        end
+    end
+end
+/*always @(posedge inclk or posedge rst) begin
     if(rst)begin
         tx_req <=0;
         rx_ack <= 0;
@@ -54,5 +69,5 @@ initial begin
     #(PERIOD*4000)
     tx_req =1;
     tx_data =8'h12;
-end
+end*/
 endmodule
