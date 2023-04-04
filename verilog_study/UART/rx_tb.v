@@ -2,7 +2,7 @@
 module rx_tb (
 );
     parameter PERIOD = 10;
-    reg clk,tx,rst,rx_ack;
+    reg clk,tx,rst;
     wire [7:0] rx_data;
     wire rx_rdy;
 
@@ -19,9 +19,8 @@ module rx_tb (
     end
 
     initial begin
-        rst = 1;rx_ack = 0;
+        rst = 1;
         #PERIOD rst = 0;
-        
         tx_data=8'b10101101;
     end
 
@@ -36,11 +35,10 @@ module rx_tb (
                     0:begin
                         sample_count <= sample_count + 1;
                         tx <= 1;
-                        rx_ack <=1;sample_st <= 1;
-                        /*if (sample_count == 10) begin
+                        if (sample_count == 10) begin
                             sample_count <= 0;
                             sample_st <= 1;
-                        end*/
+                        end
                     end 
 
                     1:begin
@@ -114,8 +112,7 @@ module rx_tb (
         .bd8_rate(bd8_rate),
         .rx_data(rx_data),
         .rx_rdy(rx_rdy),
-        .rx(tx),
-        .rx_ack(rx_ack)
+        .rx(tx)
     );
 
 

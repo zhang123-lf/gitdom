@@ -5,7 +5,6 @@ module rx #(                         //八倍过采样的参数化RXD接收器�
     input       clk,
     input       rx,
     input       bd8_rate,           //波特率
-    input rx_ack,
 
     output  reg [7:0]   rx_data,      //收到的数据
     output  reg         rx_rdy,       //收到1bit，回应一下，什么时候数据有效
@@ -41,7 +40,7 @@ always @(posedge clk or posedge rst) begin   //获取起始位边沿
     end else begin
         if (bd8_rate) begin
         rx_r <= {rx_r[0],rx};
-        rx_dedge <= rx_r[1]&(~rx_r[0]);            
+        rx_dedge <= ^rx_r;            
         end
     end
 end
@@ -57,17 +56,14 @@ always @(posedge clk or posedge rst ) begin
             case (sample_st)
                 IDLE0:begin             //等待10bit的rx_r[1]为1
                     rx_rdy_tmp[0] <= 1'b0;   //为了之后和系统时钟同步
-                    if (rx_ack) begin
-                        sample_st <=IDLE1;
-                    end
-                    /*if (sample_count == 80) begin
+                    if (sample_count == 80) begin
                         sample_st <= IDLE1;
                     end else begin
                         if (rx_r[0]) begin
                             sample_count <= sample_count + 1;
                         end
                         else sample_count <= 0;
-                    end*/
+                    end
                 end 
                 
                 IDLE1:begin                 //等待idle->start_bit的边沿
