@@ -1,4 +1,4 @@
-module uart #(                  //成功收发数据
+module uart #(                  //成功收发数据 uart为异步收发传输器，异步发送方发出数据后，不等接收方发回响应，接着发送下个数据包的通讯方式
     parameter PARITY = "ODD" //奇校验让他偶
 ) (
     input       inclk,
