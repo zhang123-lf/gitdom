@@ -3,5 +3,5 @@
 ### 全加器 fadd  
 ### 分频器 PLL
 ### UART  
-IIC和SPI还没写
+IIC写了一点点
 
