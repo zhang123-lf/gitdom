@@ -1,11 +1,11 @@
 module baud_rate_en #(                          //波特率发生器程序
-    parameter BAUD_RATE = 1,//115200,
-    parameter FREQUENCY = 800             //原本100,000,000
+    parameter BAUD_RATE = 115200,
+    parameter FREQUENCY = 50_000_000             //zynq的晶振频率
 ) (
     input clk,rst,
     output reg tx_bd_en,rx_bd_en
 );
-localparam TX_DIV_COE = FREQUENCY / (BAUD_RATE) - 1;
+localparam TX_DIV_COE = FREQUENCY / (BAUD_RATE) - 1;//波特率计数值
 localparam RX_DIV_COE = FREQUENCY / (BAUD_RATE*8) - 1;
 reg [18:0] tx_clk_div,rx_clk_div ;
 always @(posedge clk or posedge rst) begin
