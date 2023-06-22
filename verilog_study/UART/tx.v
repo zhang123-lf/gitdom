@@ -8,7 +8,7 @@ module tx #(                //八位数据的串行发送器，要求参数化�
 );
     localparam [3:0]
         IDLE = 0 ,      //空闲位
-        START = 1,      //起始位
+        START = 1,      //起始位 
         FIRST_BIT = 2,  //第一位数据
         SEC_BIT = 3,    //第二位数据
         THIRD_BIT = 4,
