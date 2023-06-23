@@ -7,7 +7,7 @@
 ## vs code直接调用modelsim仿真
 
 1.在控制台终端输入 `vlog file_path/*.v`或者`vlog *v` 即可对该文件夹下的所.v文件进行编译  
-2.进行仿真，输入 `vsim bcdtest -voptargs=+acc` 这里的`bcdtest`为测试激励的**模块名**，后面的`-voptargs=+acc`最好加上，否则新版本的modelsim很容易被object给优化掉**查看状态机**后加`-fsmdebug`
+2.进行仿真，输入 `vsim bcdtest -voptargs=+acc` 这里的`bcdtest`为测试激励的**模块名**，后面的`-voptargs=+acc`最好加上，否则新版本的modelsim很容易被object给优化掉  **查看状态机**后加`-fsmdebug`  **查看原理图**`vsim -debugdb work.mms_top`  mms_top为模块名称
 3.modelsim仿真时长可以直接在命令面板直接输入`run 10ns`**仿真时间不能超过1s**
 ## 删除work库输入`rm -r work`
 # vcs和verdi使用
